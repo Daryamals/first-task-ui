@@ -23,7 +23,6 @@ public class DeleteCustomerTest extends BaseTest {
 	@Story("Удаление клиента по средней длине имени")
 	@Description("Удаляем клиента, имя которого ближе всего к средней длине имён")
 	public void testDeleteCustomer() {
-		driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager");
 
 		ManagerPage managerPage = new ManagerPage(driver);
 		managerPage.clickCustomers();

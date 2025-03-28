@@ -15,6 +15,7 @@ public class BaseTest {
     public void setup() {
         driver = WebDriverManager.createDriver();
         driver.manage().window().maximize();
+        WebDriverManager.navigateTo(driver);
     }
     @Step("Закрытие браузера")
     @AfterMethod

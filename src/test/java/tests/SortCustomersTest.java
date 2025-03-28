@@ -22,17 +22,15 @@ public class SortCustomersTest extends BaseTest {
 	@Description("Проверяем корректность сортировки списка клиентов по имени в обратном порядке")
 
 	public void testSortCustomersByFirstName() {
-		driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager");
-		
 		ManagerPage managerPage = new ManagerPage(driver);
 		managerPage.clickCustomers();
 		CustomersPage customersPage = new CustomersPage(driver);
-		
+
 		List<String> namesBeforeSort = customersPage.getCustomerNames();
 		customersPage.sortByFirstName();
-		
+
 		List<String> namesAfterSort = customersPage.getCustomerNames();
-		
+
 		Allure.step("Имена после сортировки: " + namesAfterSort);
 
 		List<String> expectedSortedNames = namesBeforeSort.stream().sorted((name1, name2) -> name2.compareTo(name1))

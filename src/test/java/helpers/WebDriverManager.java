@@ -7,8 +7,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class WebDriverManager {
+    private static final String BASE_URL = "https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager";
+
 	public static WebDriver createDriver() {
-//		WebDriver driver = new ChromeDriver();
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("--headless=new");
 		options.addArguments("--disable-gpu");
@@ -18,4 +19,8 @@ public class WebDriverManager {
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		return driver;
 	}
+	
+    public static void navigateTo(WebDriver driver) {
+        driver.get(BASE_URL);
+    }
 }

@@ -23,8 +23,6 @@ public class AddCustomerTest extends BaseTest {
     @Description("Этот тест проверяет добавление нового клиента и отображение сообщения об успехе.")
   
     public void testAddCustomer() {
-        driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager");
-
         ManagerPage managerPage = new ManagerPage(driver);
         managerPage.clickAddCustomer();
 
