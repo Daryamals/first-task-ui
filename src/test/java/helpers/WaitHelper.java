@@ -6,24 +6,26 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.qameta.allure.Step;
+
 import java.time.Duration;
 
 public class WaitHelper {
 
-    // Ожидание появления алерта
+    @Step("Ожидание появления алерта в течение {timeoutInSeconds} секунд")
     public static Alert waitForAlert(WebDriver driver, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.alertIsPresent());
         return driver.switchTo().alert();
     }
 
-    // Ожидание видимости элемента
+    @Step("Ожидание видимости элемента {element} в течение {timeoutInSeconds} секунд")
     public static void waitForElementVisibility(WebDriver driver, WebElement element, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    // Ожидание кликабельности элемента
+    @Step("Ожидание кликабельности элемента {element} в течение {timeoutInSeconds} секунд")
     public static void waitForElementToBeClickable(WebDriver driver, WebElement element, long timeoutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
         wait.until(ExpectedConditions.elementToBeClickable(element));

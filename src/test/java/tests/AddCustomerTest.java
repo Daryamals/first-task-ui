@@ -7,12 +7,21 @@ import static data.AddCustomerData.POST_CODE;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import pages.AddCustomerPage;
 import pages.ManagerPage;
 
+@Epic("Управление клиентами")
+@Feature("Добавление клиента")
 public class AddCustomerTest extends BaseTest {
 
     @Test
+    @Story("Добавление нового клиента")
+    @Description("Этот тест проверяет добавление нового клиента и отображение сообщения об успехе.")
+  
     public void testAddCustomer() {
         driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager");
 

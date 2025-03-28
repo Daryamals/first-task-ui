@@ -5,12 +5,19 @@ import org.testng.annotations.Test;
 import pages.CustomersPage;
 import pages.ManagerPage;
 import data.DeleteCustomerData;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 
 import java.util.List;
-
+@Epic("Управление клиентами")
+@Feature("Удаление клиента")
 public class DeleteCustomerTest extends BaseTest {
 
     @Test
+    @Story("Удаление клиента по средней длине имени")
+    @Description("Удаляем клиента, имя которого ближе всего к средней длине имён")
     public void testDeleteCustomerByAverageNameLength() {
         driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager");
 
