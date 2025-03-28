@@ -14,20 +14,20 @@ public abstract class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
     }
-    @Step("Click on element {locator}")
+    @Step("Кликнуть на элемент {locator}")
     protected void click(By locator) {
         WebElement element = driver.findElement(locator);
         WaitHelper.waitForElementToBeClickable(driver, element, 10);
         element.click();
     }
-    @Step("Enter text '{text}' into element {locator}")
+    @Step("Ввести {text} в элемент {locator}")
     protected void sendKeys(By locator, String text) {
         WebElement element = driver.findElement(locator);
         WaitHelper.waitForElementVisibility(driver, element, 10);
         element.clear();
         element.sendKeys(text);
     }
-
+    @Step("Получить аллерт")
     public String getAlertText() {
         WaitHelper.waitForAlert(driver, 10);
         return driver.switchTo().alert().getText();
@@ -35,9 +35,5 @@ public abstract class BasePage {
 
     public void acceptAlert() {
         driver.switchTo().alert().accept();
-    }
-
-    public void navigateTo(String url) {
-        driver.get(url);
     }
 } 
