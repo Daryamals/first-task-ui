@@ -1,50 +1,45 @@
 package tests;
 
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import data.DeleteCustomerData;
 import pages.CustomersPage;
 import pages.ManagerPage;
-import data.DeleteCustomerData;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 
-import java.util.List;
+@Test
 @Epic("Управление клиентами")
 @Feature("Удаление клиента")
 public class DeleteCustomerTest extends BaseTest {
 
-    @Test
-    @Story("Удаление клиента по средней длине имени")
-    @Description("Удаляем клиента, имя которого ближе всего к средней длине имён")
-    public void testDeleteCustomerByAverageNameLength() {
-        driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager");
+	@Test
+	@Story("Удаление клиента по средней длине имени")
+	@Description("Удаляем клиента, имя которого ближе всего к средней длине имён")
+	public void testDeleteCustomer() {
+		driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/manager");
 
-        ManagerPage managerPage = new ManagerPage(driver);
-        managerPage.clickCustomers();
+		ManagerPage managerPage = new ManagerPage(driver);
+		managerPage.clickCustomers();
 
-        CustomersPage customersPage = new CustomersPage(driver);
+		CustomersPage customersPage = new CustomersPage(driver);
 
-        List<String> customerNames = DeleteCustomerData.CUSTOMER_NAMES;
+		List<String> customerNames = customersPage.getCustomerNames();
+		double averageNameLength = DeleteCustomerData.getAverageNameLength(customerNames);
+		String customerToDelete = DeleteCustomerData.getCustomerToDelete(customerNames, averageNameLength);
 
-        if (customerNames.isEmpty()) {
-            Assert.fail("Нет клиентов для удаления.");
-            return;
-        }
+		Allure.step("Средняя длина имен: " + averageNameLength);
+		Allure.step("Удаляем клиента с именем: " + customerToDelete);
 
-        double averageLength = DeleteCustomerData.getAverageNameLength(customerNames);
+		customersPage.deleteCustomer(customerToDelete);
 
-        String nameToDelete = DeleteCustomerData.getCustomerToDelete(customerNames, averageLength);
-
-        if (nameToDelete == null) {
-            Assert.fail("Не найдено имя для удаления.");
-            return;
-        }
-
-        customersPage.deleteCustomerByName(nameToDelete);
-
-        List<String> updatedNames = customersPage.getCustomerNames();
-        Assert.assertFalse(updatedNames.contains(nameToDelete), "Клиент не был удален.");
-    }
+		List<String> updatedCustomerNames = customersPage.getCustomerNames();
+		Assert.assertFalse(updatedCustomerNames.contains(customerToDelete), "Клиент не был удален.");
+	}
 }
