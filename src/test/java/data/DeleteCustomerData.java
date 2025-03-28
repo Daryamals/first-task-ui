@@ -1,13 +1,9 @@
 package data;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalDouble;
 
 public class DeleteCustomerData {
-    public static final List<String> CUSTOMER_NAMES = Arrays.asList(
-            "Albus", "Neville", "Voldemort", "Hermione", "Ron"
-    );
 
     public static double getAverageNameLength(List<String> customerNames) {
         OptionalDouble averageLengthOpt = customerNames.stream()
