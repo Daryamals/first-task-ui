@@ -2,13 +2,11 @@ package pages;
 
 import helpers.WaitHelper;
 import io.qameta.allure.Step;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public abstract class BasePage {
-
     protected WebDriver driver;
 
     public BasePage(WebDriver driver) {
@@ -36,4 +34,4 @@ public abstract class BasePage {
     public void acceptAlert() {
         driver.switchTo().alert().accept();
     }
-} 
+}

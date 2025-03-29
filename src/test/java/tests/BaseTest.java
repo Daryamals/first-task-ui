@@ -1,15 +1,14 @@
 package tests;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
 import helpers.WebDriverManager;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 @Epic("Базовые тесты")
 public class BaseTest {
-	protected WebDriver driver;
+    protected WebDriver driver;
     @Step("Запуск браузера и открытие страницы")
     @BeforeMethod
     public void setup() {
